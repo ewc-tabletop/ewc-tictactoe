@@ -7,7 +7,10 @@ Class {
 { #category : #baseline }
 BaselineOfEwcTictactoe >> baseline: spec [
 	<baseline>
-		^ spec for: #common do: [
-			spec package: 'EwcTictactoe'
-		]
+	^ spec
+		for: #common
+		do: [ spec package: 'EwcTictactoe'.
+			spec
+				baseline: 'CodeParadise'
+				with: [ spec repository: 'github://ErikOnBike/CodeParadise/repository' ] ]
 ]
