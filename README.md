@@ -1,1 +1,1 @@
-# ewc-tictactoe
+# ewc-tictactoe## Installation```Metacello new	repository: 'github://ewc-tabletop/ewc-tictactoe:main/src';	baseline: 'EwcTictactoe';	load```
