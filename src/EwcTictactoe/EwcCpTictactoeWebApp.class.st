@@ -23,10 +23,10 @@ EwcCpTictactoeWebApp >> cells [
 	^ EwcTictactoeGame cells
 ]
 
-{ #category : #accessing }
+{ #category : #initialization }
 EwcCpTictactoeWebApp >> initialize [
 	super initialize.
-	cells := (1 to: 9) collect: [ :index | EwcCpTictactoeCell withIndex: index ]
+	EwcTictactoeGame register: self
 ]
 
 { #category : #accessing }

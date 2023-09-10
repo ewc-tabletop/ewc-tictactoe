@@ -43,3 +43,10 @@ EwcTictactoeGame >> initialize [
 	watchers := OrderedCollection new.
 	cells := (1 to: 9) collect: [ :index | EwcCpTictactoeCell withIndex: index ].
 ]
+
+{ #category : #accessing }
+EwcTictactoeGame >> register: aWebApp [
+	players size >= 2 ifTrue: [ watchers add: aWebApp ].
+	players size = 1 ifTrue: [ players add: aWebApp -> 'O' ].
+	players ifEmpty: [ players add: aWebApp -> 'X' ]
+]
