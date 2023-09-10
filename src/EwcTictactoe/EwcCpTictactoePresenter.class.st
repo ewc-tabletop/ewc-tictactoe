@@ -4,7 +4,9 @@ Class {
 	#category : #'EwcTictactoe-Web-App'
 }
 
-{ #category : #accessing }
+{ #category : #rendering }
 EwcCpTictactoePresenter >> renderView [
-	self model cells do: [ :cell | self renderChildViewForModel: cell atSlotNamed: cell name ]
+	self model cells
+		do: [ :cell | self renderChildViewForModel: cell atSlotNamed: cell name ].
+	self view textContent: self model playerStatus
 ]

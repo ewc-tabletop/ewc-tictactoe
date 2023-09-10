@@ -47,6 +47,10 @@ EwcTictactoeGame >> initialize [
 { #category : #accessing }
 EwcTictactoeGame >> register: aWebApp [
 	players size >= 2 ifTrue: [ watchers add: aWebApp ].
-	players size = 1 ifTrue: [ players add: aWebApp -> 'O' ].
-	players ifEmpty: [ players add: aWebApp -> 'X' ]
+	players size = 1
+		ifTrue: [ players add: aWebApp -> #O.
+			aWebApp player: #O ].
+	players
+		ifEmpty: [ players add: aWebApp -> #X.
+			aWebApp player: #X ]
 ]

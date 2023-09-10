@@ -37,6 +37,8 @@ EwcCpTictactoeView class >> template [
 		<slot name="cell32"></slot>
 		<slot name="cell33"></slot>
 	</div>
+	<div class="row">
+		<p>	<slot></slot></p>
 	</div>
 	</div>
 	'
