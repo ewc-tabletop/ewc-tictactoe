@@ -20,7 +20,7 @@ EwcCpTictactoeWebApp >> applicationModel [
 
 { #category : #accessing }
 EwcCpTictactoeWebApp >> cells [
-	^ cells
+	^ EwcTictactoeGame cells
 ]
 
 { #category : #accessing }
