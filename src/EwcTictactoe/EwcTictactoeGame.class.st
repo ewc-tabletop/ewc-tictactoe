@@ -24,7 +24,9 @@ EwcTictactoeGame class >> register: aWebApp [
 
 { #category : #releasing }
 EwcTictactoeGame class >> restart [
-	uniqueInstance := nil
+	uniqueInstance
+		ifNotNil: [ uniqueInstance clear.
+			uniqueInstance := nil ]
 ]
 
 { #category : #'instance creation' }
@@ -35,6 +37,12 @@ EwcTictactoeGame class >> uniqueInstance [
 { #category : #accessing }
 EwcTictactoeGame >> cells [
 	^ cells
+]
+
+{ #category : #accessing }
+EwcTictactoeGame >> clear [
+	players removeAll.
+	watchers removeAll
 ]
 
 { #category : #initialization }

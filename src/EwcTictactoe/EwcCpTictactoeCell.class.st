@@ -2,7 +2,7 @@ Class {
 	#name : #EwcCpTictactoeCell,
 	#superclass : #CpModel,
 	#instVars : [
-		'owners',
+		'owner',
 		'name'
 	],
 	#category : #'EwcTictactoe-Web-App'
@@ -15,16 +15,10 @@ EwcCpTictactoeCell class >> withIndex: anIndex [
 		yourself 
 ]
 
-{ #category : #accessing }
-EwcCpTictactoeCell >> changeOwner [
-	owners addLast: owners removeFirst.
-	self valueChanged
-]
-
-{ #category : #accessing }
+{ #category : #initialization }
 EwcCpTictactoeCell >> initialize [
 	super initialize.
-	owners := OrderedCollection with: ' ' with: 'X' with: 'O' 
+	owner := ' '
 ]
 
 { #category : #accessing }
@@ -37,12 +31,18 @@ EwcCpTictactoeCell >> name: aString [
 	name := aString 
 ]
 
-{ #category : #accessing }
+{ #category : #presenter }
 EwcCpTictactoeCell >> preferredPresenterClass [
 	^ EwcCpTictactoeCellPresenter
 ]
 
 { #category : #accessing }
+EwcCpTictactoeCell >> setOwner: aSymbol [
+	owner := aSymbol asString.
+	self valueChanged
+]
+
+{ #category : #evaluating }
 EwcCpTictactoeCell >> value [
-	^ owners first
+	^ owner
 ]

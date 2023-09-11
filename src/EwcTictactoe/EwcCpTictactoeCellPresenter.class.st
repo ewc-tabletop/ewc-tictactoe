@@ -4,17 +4,18 @@ Class {
 	#category : #'EwcTictactoe-Web-App'
 }
 
-{ #category : #accessing }
+{ #category : #'event handling' }
 EwcCpTictactoeCellPresenter >> cellClicked [
-	self model changeOwner
+	self application player
+		ifNotNil: [ self model setOwner: self application player ]
 ]
 
-{ #category : #accessing }
+{ #category : #rendering }
 EwcCpTictactoeCellPresenter >> renderView [
 	self view renderValue: self model value
 ]
 
-{ #category : #accessing }
+{ #category : #view }
 EwcCpTictactoeCellPresenter >> viewCreated [
 	super viewCreated.
 	

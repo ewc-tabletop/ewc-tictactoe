@@ -2,7 +2,6 @@ Class {
 	#name : #EwcCpTictactoeWebApp,
 	#superclass : #CpMvpWebApplication,
 	#instVars : [
-		'cells',
 		'player'
 	],
 	#category : #'EwcTictactoe-Web-App'
@@ -28,6 +27,11 @@ EwcCpTictactoeWebApp >> cells [
 EwcCpTictactoeWebApp >> initialize [
 	super initialize.
 	EwcTictactoeGame register: self
+]
+
+{ #category : #accessing }
+EwcCpTictactoeWebApp >> player [
+	^ player
 ]
 
 { #category : #accessing }
