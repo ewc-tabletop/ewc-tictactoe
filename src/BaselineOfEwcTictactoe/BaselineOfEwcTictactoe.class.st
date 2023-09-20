@@ -4,13 +4,24 @@ Class {
 	#category : #BaselineOfEwcTictactoe
 }
 
-{ #category : #baseline }
+{ #category : #baselines }
 BaselineOfEwcTictactoe >> baseline: spec [
 	<baseline>
 	^ spec
 		for: #common
-		do: [ spec package: 'EwcTictactoe'.
-			spec
-				baseline: 'CodeParadise'
-				with: [ spec repository: 'github://ErikOnBike/CodeParadise/repository' ] ]
+		do: [ self codeParadise: spec.
+
+			spec package: 'EwcTictactoe' ]
+]
+
+{ #category : #dependencies }
+BaselineOfEwcTictactoe >> codeParadise: spec [
+	spec
+		baseline: 'CodeParadise'
+		with: [ spec repository: 'github://ErikOnBike/CodeParadise' ]
+]
+
+{ #category : #accessing }
+BaselineOfEwcTictactoe >> projectClass [
+	^ MetacelloCypressBaselineProject
 ]
