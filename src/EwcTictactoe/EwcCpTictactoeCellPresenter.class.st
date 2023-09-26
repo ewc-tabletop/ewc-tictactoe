@@ -11,7 +11,7 @@ EwcCpTictactoeCellPresenter >> cellClicked [
 
 { #category : #accessing }
 EwcCpTictactoeCellPresenter >> renderView [
-	self view renderValue: self model value
+	self view renderValue: self model value disabled: self model isDisabled
 ]
 
 { #category : #accessing }

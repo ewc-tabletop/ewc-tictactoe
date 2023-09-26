@@ -2,7 +2,8 @@ Class {
 	#name : #EwcCpTictactoeWebApp,
 	#superclass : #CpMvpWebApplication,
 	#instVars : [
-		'cells'
+		'cells',
+		'player'
 	],
 	#category : #'EwcTictactoe-Web-App'
 }
@@ -20,13 +21,23 @@ EwcCpTictactoeWebApp >> applicationModel [
 
 { #category : #accessing }
 EwcCpTictactoeWebApp >> cells [
-	^ cells
+	^ EwcTictactoeGame cellsForPlayer: self player 
 ]
 
 { #category : #accessing }
 EwcCpTictactoeWebApp >> initialize [
 	super initialize.
-	cells := (1 to: 9) collect: [ :index | EwcCpTictactoeCell withIndex: index ]
+	EwcTictactoeGame register: self
+]
+
+{ #category : #accessing }
+EwcCpTictactoeWebApp >> player [
+	^ player
+]
+
+{ #category : #accessing }
+EwcCpTictactoeWebApp >> player: aSymbol [
+	player := aSymbol
 ]
 
 { #category : #accessing }

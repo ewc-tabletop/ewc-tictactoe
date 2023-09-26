@@ -54,11 +54,13 @@ EwcCpTictactoeCellView >> initialize [
 ]
 
 { #category : #accessing }
-EwcCpTictactoeCellView >> renderValue: aValue [
+EwcCpTictactoeCellView >> renderValue: aValue disabled: isDisabled [
 	| button |
 	button := self shadowedElementWithId: 'btn-cell'.
 	button textContent: aValue.
 	
 	button removeClasses: {'btn-light' . 'btn-primary' . 'btn-danger'}.
-	button addClass: (self cellClasses at: aValue)
+	button addClass: (self cellClasses at: aValue ).
+	
+	isDisabled ifTrue: [ button attributeAdd:  #disabled]
 ]
