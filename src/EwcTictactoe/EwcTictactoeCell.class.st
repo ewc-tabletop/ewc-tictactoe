@@ -2,7 +2,8 @@ Class {
 	#name : #EwcTictactoeCell,
 	#superclass : #Object,
 	#instVars : [
-		'name'
+		'name',
+		'owner'
 	],
 	#category : #'EwcTictactoe-Core'
 }
@@ -11,6 +12,7 @@ Class {
 EwcTictactoeCell class >> withIndex: anIndex [
 	^ self new
 		name: 'cell' , ((anIndex - 1) // 3 + 1) asString , ((anIndex - 1) \\ 3 + 1) asString;
+		owner: ' ';
 		yourself
 ]
 
@@ -26,5 +28,10 @@ EwcTictactoeCell >> name: aString [
 
 { #category : #accessing }
 EwcTictactoeCell >> owner [
-	^ ' '
+	^ owner
+]
+
+{ #category : #accessing }
+EwcTictactoeCell >> owner: anObject [
+	owner := anObject
 ]

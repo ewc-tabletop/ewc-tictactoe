@@ -18,8 +18,8 @@ EwcTictactoeGame class >> cells [
 ]
 
 { #category : #accessing }
-EwcTictactoeGame class >> cellsForPlayer: player [
-	^ self uniqueInstance stateFor: player
+EwcTictactoeGame class >> cellsForPlayer: webApp [
+	^ self uniqueInstance stateFor: webApp
 ]
 
 { #category : #accessing }
@@ -35,6 +35,11 @@ EwcTictactoeGame class >> uniqueInstance [
 { #category : #accessing }
 EwcTictactoeGame >> cells [
 	^ cells
+]
+
+{ #category : #accessing }
+EwcTictactoeGame >> currentPlayer [
+	^ players size = 2 ifTrue: [ players first value] ifFalse: [ nil ]
 ]
 
 { #category : #clearing }
@@ -65,10 +70,30 @@ EwcTictactoeGame >> register: aWebApp [
 EwcTictactoeGame >> reset [
 	players removeAll.
 	watchers removeAll.
-	self emptyCells
+	cells := self emptyCells
 ]
 
 { #category : #accessing }
-EwcTictactoeGame >> stateFor: aCharacter [
-	^ cells collect: [ :each | EwcCpTictactoeCell disabledWithName: each name withOwner: each owner ] 
+EwcTictactoeGame >> setOwner: aPlayer toCell: aCellName [
+	self currentPlayer = aPlayer
+		ifTrue: [ cells
+				select: [ :each | each name = aCellName ]
+				thenDo: [ :each | each owner: aPlayer ].
+				players addLast: players removeFirst ].
+]
+
+{ #category : #accessing }
+EwcTictactoeGame >> stateFor: webApp [
+	| playerSymbol foundPlayers |
+	foundPlayers := players
+			select: [ :each | each key = webApp ]
+			thenCollect: [ :each | each value ].
+	playerSymbol := foundPlayers
+			ifEmpty: [ 'none' ]
+			ifNotEmpty: [ foundPlayers first ].
+	^ cells
+		collect: [ :each | 
+			playerSymbol = self currentPlayer
+				ifTrue: [ EwcCpTictactoeCell enabledWithName: each name withOwner: each owner ]
+				ifFalse: [ EwcCpTictactoeCell disabledWithName: each name withOwner: each owner ] ]
 ]

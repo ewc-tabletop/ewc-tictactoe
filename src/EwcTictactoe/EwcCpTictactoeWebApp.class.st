@@ -21,7 +21,7 @@ EwcCpTictactoeWebApp >> applicationModel [
 
 { #category : #accessing }
 EwcCpTictactoeWebApp >> cells [
-	^ EwcTictactoeGame cellsForPlayer: self player 
+	^ EwcTictactoeGame cellsForPlayer: self 
 ]
 
 { #category : #accessing }

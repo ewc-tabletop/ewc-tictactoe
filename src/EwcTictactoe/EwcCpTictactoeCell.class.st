@@ -18,6 +18,17 @@ EwcCpTictactoeCell class >> disabledWithName: aName withOwner: anOwner [
 		yourself. 
 ]
 
+{ #category : #accessing }
+EwcCpTictactoeCell class >> enabledWithName: aName withOwner: anOwner [
+	| cell |
+	cell := self new
+			name: aName;
+			owner: anOwner;
+			yourself.
+	anOwner = ' ' ifFalse: [cell disable].
+	^ cell
+]
+
 { #category : #'instance creation' }
 EwcCpTictactoeCell class >> withIndex: anIndex [
 	^ self new
@@ -39,7 +50,8 @@ EwcCpTictactoeCell >> disable [
 { #category : #accessing }
 EwcCpTictactoeCell >> initialize [
 	super initialize.
-	owners := OrderedCollection with: ' ' with: 'X' with: 'O' 
+	owners := OrderedCollection with: ' ' with: 'X' with: 'O'.
+	disabled := false.
 ]
 
 { #category : #testing }

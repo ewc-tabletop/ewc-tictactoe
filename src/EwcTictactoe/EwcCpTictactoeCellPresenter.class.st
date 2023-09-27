@@ -6,7 +6,10 @@ Class {
 
 { #category : #accessing }
 EwcCpTictactoeCellPresenter >> cellClicked [
-	self model changeOwner
+	| name player|
+	name := self model name.
+	player := self application player.
+	EwcTictactoeGame uniqueInstance setOwner: player toCell: name.
 ]
 
 { #category : #accessing }
