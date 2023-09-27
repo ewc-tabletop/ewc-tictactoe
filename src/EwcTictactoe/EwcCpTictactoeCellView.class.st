@@ -62,5 +62,5 @@ EwcCpTictactoeCellView >> renderValue: aValue disabled: isDisabled [
 	button removeClasses: {'btn-light' . 'btn-primary' . 'btn-danger'}.
 	button addClass: (self cellClasses at: aValue ).
 	
-	isDisabled ifTrue: [ button attributeAdd:  #disabled]
+	isDisabled ifTrue: [ button attributeAdd:  #disabled] ifFalse: [ button removeAttributeAt: #disabled ]
 ]

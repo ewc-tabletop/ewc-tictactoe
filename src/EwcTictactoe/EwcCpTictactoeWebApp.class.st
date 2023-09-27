@@ -44,3 +44,9 @@ EwcCpTictactoeWebApp >> player: aSymbol [
 EwcCpTictactoeWebApp >> preferredPresenterClass [
 	^ EwcCpTictactoePresenter
 ]
+
+{ #category : #accessing }
+EwcCpTictactoeWebApp >> refresh [
+	self
+		allPresentersDo: [ :presenter | presenter class = EwcCpTictactoePresenter ifTrue: [ presenter renderView ] ]
+]

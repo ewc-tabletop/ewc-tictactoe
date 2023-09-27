@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'cells',
 		'players',
-		'watchers'
+		'watchers',
+		'announcer'
 	],
 	#classInstVars : [
 		'uniqueInstance'
@@ -50,6 +51,7 @@ EwcTictactoeGame >> emptyCells [
 { #category : #initialization }
 EwcTictactoeGame >> initialize [
 	super initialize.
+	announcer := Announcer new.
 	players := OrderedCollection new.
 	watchers := OrderedCollection new.
 	cells := self emptyCells
@@ -60,14 +62,22 @@ EwcTictactoeGame >> register: aWebApp [
 	players size >= 2 ifTrue: [ watchers add: aWebApp ].
 	players size = 1
 		ifTrue: [ players add: aWebApp -> #O.
-			aWebApp player: #O ].
+			aWebApp player: #O.
+			announcer announce: EwcStateChanged ].
 	players
 		ifEmpty: [ players add: aWebApp -> #X.
-			aWebApp player: #X ]
+			aWebApp player: #X ].
+	announcer
+		when: EwcStateChanged
+		send: #refresh
+		to: aWebApp
 ]
 
 { #category : #clearing }
 EwcTictactoeGame >> reset [
+	announcer
+		ifNotNil: [ announcer subscriptions reset ]
+		ifNil: [ announcer := Announcer new ].
 	players removeAll.
 	watchers removeAll.
 	cells := self emptyCells
@@ -79,7 +89,8 @@ EwcTictactoeGame >> setOwner: aPlayer toCell: aCellName [
 		ifTrue: [ cells
 				select: [ :each | each name = aCellName ]
 				thenDo: [ :each | each owner: aPlayer ].
-				players addLast: players removeFirst ].
+			players addLast: players removeFirst.
+			announcer announce: EwcStateChanged ]
 ]
 
 { #category : #accessing }
